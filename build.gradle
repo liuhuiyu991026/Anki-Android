@@ -1,0 +1,41 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.jacocoVersion = '0.8.2'
+
+    repositories {
+        maven { url "https://dl.google.com/dl/android/maven2/"}
+        google()
+        jcenter()
+        maven {
+            url uri('./lifecycle-plugin/my-plugin')
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.github.triplet.gradle:play-publisher:1.1.5'
+//        classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
+        classpath 'com.gavin.plugin:lifecycle-plugin:0.0.1'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://dl.google.com/dl/android/maven2/"}
+        google()
+        jcenter()
+    }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
+}
+
+ext {
+    travisBuild = System.getenv("TRAVIS") == "true"
+    // allows for -Dpre-dex=false to be set
+    preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
+}
