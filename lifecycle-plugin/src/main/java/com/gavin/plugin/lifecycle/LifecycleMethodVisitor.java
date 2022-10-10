@@ -30,10 +30,10 @@ public class LifecycleMethodVisitor extends MethodVisitor {
     public void visitCode() {
         super.visitCode();
         visitLabel(newStart);
-        File destFile = new File("D:/Android/Project/EventHandlerFinder/MethodList1.txt");
+        File destFile = new File("D:/Android/Project/EventHandlerFinder/MethodList.txt");
         //如果文件不存在就全插
         if (!destFile.exists() || destFile.length() == 0) {
-            System.out.println("不存在!");
+            System.out.println("不存在");
             flag = true;
             mv.visitLdcInsn(className);
             mv.visitLdcInsn(methodName);
