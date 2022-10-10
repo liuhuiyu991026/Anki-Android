@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import realtimecoverage.*;
 
 import timber.log.Timber;
 
@@ -38,6 +39,9 @@ public class IntentHandler extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         realtimecoverage.RealtimeCoverage.init();
         super.onCreate(savedInstanceState);
+        //	在这里为程序设置异常处理，才能捕获到未处理的异常
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
         setContentView(R.layout.progress_bar);
         Intent intent = getIntent();
         Timber.v(intent.toString());
