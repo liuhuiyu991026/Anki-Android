@@ -166,7 +166,7 @@ class LifecyclePlugin extends Transform implements Plugin<Project> {
     static boolean checkClassFile(String name) {
         //只处理需要的class文件
         return (name.endsWith(".class") && !name.startsWith("R\$")
-                && !"R.class".equals(name) && !"BuildConfig.class".equals(name) && !name.startsWith("MethodVisitor") && !name.startsWith("RealtimeCoverage"));
+                && !"R.class".equals(name) && !"BuildConfig.class".equals(name) && !name.startsWith("MethodVisitor") && !name.startsWith("RealtimeCoverage") && !name.startsWith("CrashHandler"));
 //                && "android/support/v4/app/FragmentActivity.class".equals(name))
     }
 
